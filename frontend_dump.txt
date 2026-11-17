@@ -1,0 +1,295 @@
+================================================================================
+FRONTEND SOURCE DUMP
+Generated: 2026-11-13T12:39:47
+Root:      C:\Users\uchime victor\Desktop\hiring-attendance\hr-attendance-dashboard
+Folders:   app, components, lib
+Files:     12
+================================================================================
+
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+  1. app\globals.css
+  2. app\layout.tsx
+  3. app\page.tsx
+  4. app\admin\explain\page.tsx
+  5. app\analytics\page.tsx
+  6. app\attendance\page.tsx
+  7. app\employees\page.tsx
+  8. app\punch\page.tsx
+  9. components\ui\button.tsx
+ 10. components\workpulse\app-shell.tsx
+ 11. lib\api.js
+ 12. lib\utils.ts
+
+================================================================================
+
+[FILE 1/12]  app\globals.css
+================================================================================
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@custom-variant dark (&:is(.dark *));
+:root{--background:#f8fafc;--foreground:#0f172a;--card:#fff;--muted:#f1f5f9;--muted-foreground:#64748b;--border:#e2e8f0;--primary:#2563eb;--sidebar:#0f172a;--sidebar-muted:#94a3b8;--radius:12px} .dark{--background:#0b1220;--foreground:#e5edf8;--card:#111c2e;--muted:#172337;--muted-foreground:#94a3b8;--border:#25334a;--sidebar:#08101d}*{box-sizing:border-box;border-color:var(--border)}html,body{margin:0;min-height:100%;background:var(--background);color:var(--foreground);font-family:Arial,Helvetica,sans-serif}button,input,select{font:inherit}button{cursor:pointer}.app-shell{display:flex;min-height:100vh}.sidebar{width:252px;background:var(--sidebar);color:#f8fafc;display:flex;flex-direction:column;padding:20px 14px;flex-shrink:0}.brand{display:flex;align-items:center;gap:10px;padding:0 10px 24px;font-weight:700;font-size:17px;letter-spacing:-.02em}.brand-mark{display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#2563eb;color:#fff;font-weight:800}.collapse-button{margin-left:auto;border:0;background:transparent;color:#64748b}.workspace-switcher{display:flex;align-items:center;gap:9px;border:1px solid #23324a;background:#172337;border-radius:10px;padding:9px;margin-bottom:24px}.workspace-switcher strong,.workspace-switcher small,.user-card strong,.user-card small,.person strong,.person small{display:block}.workspace-switcher strong{font-size:12px}.workspace-switcher small,.user-card small,.person small{color:var(--sidebar-muted);font-size:11px;margin-top:3px}.workspace-icon{display:grid;place-items:center;background:#334155;border-radius:7px;width:26px;height:26px;font-size:12px}.workspace-switcher svg{margin-left:auto;color:#71819a;width:14px}.nav-label{color:#64748b;font-size:10px;text-transform:uppercase;letter-spacing:.12em;padding:0 10px;margin:0 0 8px}.admin-label{margin-top:24px}.sidebar nav a,.sidebar-bottom>a{height:40px;border-radius:8px;display:flex;align-items:center;gap:11px;padding:0 10px;color:#a9b6ca;text-decoration:none;font-size:13px;margin-bottom:3px}.sidebar nav a svg,.sidebar-bottom>a svg{width:16px}.sidebar nav a.active,.sidebar nav a:hover,.sidebar-bottom>a:hover{background:#1e2d44;color:#fff}.sidebar nav a b{margin-left:auto;background:#2c66d9;color:white;font-size:10px;border-radius:20px;padding:2px 6px}.sidebar-bottom{margin-top:auto}.user-card{border-top:1px solid #23324a;margin-top:12px;padding:14px 8px 0;display:flex;align-items:center;gap:9px}.user-card strong{font-size:12px}.user-card button{margin-left:auto;background:transparent;border:0;color:#94a3b8}.user-card button svg{width:15px}.avatar,.top-avatar{display:grid;place-items:center;border-radius:50%;background:#dbeafe;color:#1d4ed8;font-size:11px;font-weight:700}.avatar{width:30px;height:30px}.top-avatar{width:32px;height:32px}.main{min-width:0;flex:1}.topbar{height:64px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 34px;background:color-mix(in srgb,var(--background) 92%,transparent)}.breadcrumbs{display:flex;gap:10px;align-items:center;font-size:12px}.breadcrumbs span{color:var(--muted-foreground)}.breadcrumbs b{font-weight:400;color:var(--border)}.topbar-actions{display:flex;gap:18px;align-items:center}.today{font-size:12px;color:var(--muted-foreground)}.theme-button,.icon-button{border:0;background:transparent;color:var(--muted-foreground);display:grid;place-items:center}.theme-button svg,.icon-button svg{width:17px}.mobile-menu{display:none;border:0;background:transparent}.content{max-width:1400px;margin:0 auto;padding:38px 42px 60px}.page-title{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:30px}.page-title h1{font-size:30px;letter-spacing:-.04em;margin:3px 0 7px}.subtitle{color:var(--muted-foreground);font-size:14px;margin:0}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:var(--muted-foreground);font-weight:700;margin:0}.page-eyebrow{color:#2563eb}.month-input,input,select{height:38px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--foreground);padding:0 11px;font-size:12px;outline:none}.month-input:focus,input:focus,select:focus{border-color:#60a5fa;box-shadow:0 0 0 3px #bfdbfe55}.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:18px}.metric-card,.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius)}.metric-card{padding:20px;display:flex;gap:14px;align-items:flex-start}.metric-icon{width:37px;height:37px;border-radius:10px;display:grid;place-items:center}.metric-icon svg{width:18px}.metric-icon.blue{background:#dbeafe;color:#2563eb}.metric-icon.green{background:#dcfce7;color:#16a34a}.metric-icon.amber{background:#fef3c7;color:#d97706}.metric-icon.purple{background:#ede9fe;color:#7c3aed}.metric-value{font-size:25px;letter-spacing:-.04em;font-weight:700;margin:6px 0 2px}.metric-detail{color:var(--muted-foreground);font-size:11px;margin:0}.content-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;margin-bottom:18px}.panel{padding:22px}.panel-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px}.panel-heading h2,.panel-heading h3{font-size:14px;margin:0 0 5px;letter-spacing:-.01em}.panel-heading p{font-size:12px;color:var(--muted-foreground);margin:0}.text-button{background:transparent;border:0;color:#2563eb;font-size:12px;display:flex;align-items:center;gap:5px}.text-button svg{width:14px}.rotate-180{transform:rotate(180deg)}.rotate-90{transform:rotate(-90deg)}.chart-wrap{height:270px}.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:12px}th{text-align:left;color:var(--muted-foreground);font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;background:var(--card);position:sticky;top:0;white-space:nowrap}th,td{padding:14px 12px;border-bottom:1px solid var(--border);white-space:nowrap}td:first-child,th:first-child{padding-left:0}td:last-child,th:last-child{padding-right:0}.strong{font-weight:600}.muted{color:var(--muted-foreground)}.rate{color:#16a34a;font-weight:700}.pulse-row{display:flex;flex-wrap:wrap;gap:30px;color:var(--muted-foreground);font-size:12px}.pulse-row strong{color:var(--foreground);font-size:17px;margin-right:3px}.pulse-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}.green-dot{background:#22c55e}.amber-dot{background:#f59e0b}.blue-dot{background:#3b82f6}.red-dot{background:#ef4444}.primary-button,.secondary-button{height:38px;border-radius:8px;padding:0 14px;font-size:12px;font-weight:700}.primary-button{background:#2563eb;color:white;border:1px solid #2563eb}.primary-button:hover{background:#1d4ed8}.secondary-button{background:var(--card);border:1px solid var(--border);color:var(--foreground)}.toolbar{display:flex;gap:10px;margin-bottom:15px}.search-box{display:flex;align-items:center;gap:7px;flex:1;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0 11px}.search-box svg{width:15px;color:var(--muted-foreground)}.search-box input{border:0;box-shadow:none;padding:0;width:100%}.table-panel{padding-bottom:12px}.table-meta,.pagination{display:flex;justify-content:space-between;align-items:center;color:var(--muted-foreground);font-size:12px;margin-bottom:12px}.pagination{margin:16px 0 0}.pagination select{height:30px;margin-left:4px}.page-button{border:1px solid var(--border);background:var(--card);border-radius:6px;width:28px;height:28px;margin-left:5px;color:var(--muted-foreground)}.person{display:flex;align-items:center;gap:9px}.person strong{font-size:12px}.person small{color:var(--muted-foreground)}.department-tag{background:var(--muted);padding:5px 8px;border-radius:5px;font-size:11px}.filter-bar{display:flex;gap:10px;align-items:flex-end;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:15px;margin-bottom:15px}.filter-bar div{display:flex;flex-direction:column;gap:6px}.filter-bar label,.code-field,.form-grid label,.explain-grid label{font-size:11px;color:var(--muted-foreground);font-weight:600}.filter-bar input,.filter-bar select{width:150px}.status{display:inline-flex;align-items:center;border-radius:20px;padding:5px 8px;font-weight:700;font-size:10px;letter-spacing:.04em}.status-green{background:#dcfce7;color:#15803d}.status-amber{background:#fef3c7;color:#b45309}.status-blue{background:#dbeafe;color:#1d4ed8}.status-purple{background:#ede9fe;color:#6d28d9}.status-red{background:#fee2e2;color:#b91c1c}.status-gray{background:var(--muted);color:var(--muted-foreground)}.warning-text{color:#b45309;font-weight:700}.row-action{background:transparent;border:0;color:#2563eb;font-size:11px}.empty{min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;color:var(--muted-foreground);font-size:12px}.empty strong{color:var(--foreground);font-size:13px}.empty-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--muted);margin-bottom:4px}.empty-icon svg{width:17px}.drawer-backdrop,.modal-backdrop{position:fixed;inset:0;background:#0f172a66;z-index:20}.drawer{position:absolute;right:0;top:0;height:100%;width:min(470px,100%);background:var(--card);padding:28px;box-shadow:-10px 0 30px #0f172a22;overflow:auto}.modal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(580px,calc(100% - 30px));background:var(--card);padding:25px;border-radius:14px;box-shadow:0 20px 50px #0f172a33}.modal-heading{display:flex;justify-content:space-between;gap:16px;margin-bottom:24px}.modal-heading h2{font-size:18px;margin:0 0 6px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-grid label,.explain-grid label{display:flex;flex-direction:column;gap:7px}.form-grid input,.form-grid select,.explain-grid input,.explain-grid select{width:100%}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:25px}.detail-status{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);padding-bottom:20px;color:var(--muted-foreground);font-size:11px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:23px 0;border-bottom:1px solid var(--border)}.detail-grid span,.health-row span{display:block;color:var(--muted-foreground);font-size:11px;margin-bottom:5px}.detail-grid strong{font-size:14px}.timeline{padding-top:22px}.timeline h3{font-size:13px}.timeline .empty{min-height:150px}.full-button{width:100%}.punch-page .page-title{margin-bottom:24px}.punch-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:18px}.punch-card{background:linear-gradient(145deg,#102449,#173b75);color:white;border-radius:16px;padding:46px;text-align:center;min-height:530px}.clock-orb{display:grid;place-items:center;margin:0 auto 24px;width:68px;height:68px;border:1px solid #6ea0ff66;border-radius:50%;background:#3c7eff33}.clock-orb svg{width:26px}.big-clock{font-size:72px;font-weight:700;letter-spacing:-.08em;margin:10px 0}.clock-date{color:#bed3f5;font-size:13px;margin-bottom:35px}.code-field{display:block;text-align:left;max-width:340px;margin:auto;color:#bed3f5}.code-field input{display:block;width:100%;margin-top:8px;background:#ffffff18;border-color:#ffffff33;color:#fff;height:48px}.code-field input::placeholder{color:#b5c9e5}.punch-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:340px;margin:15px auto 0}.punch-actions button{height:54px;border-radius:9px;border:0;font-weight:700}.punch-actions span{font-size:22px;margin-right:5px}.punch-in{background:#4ade80;color:#052e16}.punch-out{background:#60a5fa;color:#172554}.punch-side{display:flex;flex-direction:column;gap:18px}.result-card{display:flex;align-items:center;gap:12px;background:#dcfce7;border:1px solid #bbf7d0;border-radius:10px;padding:14px;color:#166534}.result-card p{font-size:12px;margin:4px 0 0;color:#4d7c0f}.success-mark{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#22c55e;color:#fff;font-weight:bold}.guidance>div{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--border);font-size:12px}.guidance>div:last-child{border:0}.guidance>div span{color:#2563eb;font-weight:700}.guidance p{margin:0;color:var(--muted-foreground)}.analytics-top{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;margin-bottom:18px}.summary-content{display:flex;align-items:center;gap:35px}.score-ring{width:128px;height:128px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:12px solid #bfdbfe;outline:1px solid #60a5fa}.score-ring strong{font-size:22px}.score-ring span{font-size:11px;color:var(--muted-foreground)}.summary-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:17px;flex:1}.summary-stats span{display:block;font-size:10px;color:var(--muted-foreground);margin-bottom:4px}.summary-stats strong{font-size:18px}.health-row{display:grid;grid-template-columns:105px 1fr 48px;align-items:center;gap:12px;font-size:12px;margin:18px 0}.health-track{height:7px;background:var(--muted);border-radius:10px;overflow:hidden}.health-track i{display:block;height:100%;background:#2563eb;border-radius:10px}.health-row strong{text-align:right}.rank{display:grid;place-items:center;width:24px;height:24px;border-radius:7px;background:var(--muted);font-size:11px;font-weight:700}.rank-1{background:#fef3c7;color:#b45309}.rank-2{background:#e2e8f0;color:#475569}.rank-3{background:#ffedd5;color:#c2410c}.explain-grid{display:grid;grid-template-columns:340px 1fr;gap:18px}.explain-grid label{margin-bottom:15px}.code-panel pre{background:#0b1220;color:#b8d3ff;border-radius:9px;padding:20px;overflow:auto;font-size:12px;line-height:1.7;min-height:330px}.mobile-scrim{display:none}
+@media(max-width:1050px){.metric-grid{grid-template-columns:1fr 1fr}.content-grid,.analytics-top,.punch-grid{grid-template-columns:1fr}.today{display:none}.content{padding:30px 24px}.sidebar{width:220px}.summary-content{justify-content:center}}
+@media(max-width:720px){.sidebar{position:fixed;inset:0 auto 0 0;width:275px;transform:translateX(-100%);transition:transform .2s;z-index:30}.sidebar.mobile-open{transform:translateX(0)}.mobile-scrim{display:block;position:fixed;inset:0;background:#0f172a66;z-index:25}.mobile-menu{display:block}.topbar{padding:0 18px}.topbar-actions{gap:10px}.breadcrumbs{margin-left:6px}.content{padding:25px 16px 40px}.page-title{align-items:flex-start;flex-direction:column;margin-bottom:22px}.page-title h1{font-size:26px}.metric-grid{grid-template-columns:1fr 1fr;gap:10px}.metric-card{padding:14px;gap:10px}.metric-value{font-size:21px}.metric-detail{font-size:10px}.filter-bar{align-items:stretch;flex-direction:column}.filter-bar input,.filter-bar select{width:100%}.toolbar{flex-wrap:wrap}.toolbar .search-box{min-width:100%}.form-grid{grid-template-columns:1fr}.punch-card{padding:30px 18px}.big-clock{font-size:56px}.punch-actions{grid-template-columns:1fr}.summary-content{flex-direction:column;gap:28px}.summary-stats{width:100%}.explain-grid{grid-template-columns:1fr}.panel{padding:17px}.drawer{padding:22px}}
+
+================================================================================
+
+[FILE 2/12]  app\layout.tsx
+================================================================================
+import { Analytics } from '@vercel/analytics/next'
+import type { Metadata, Viewport } from 'next'
+import './globals.css'
+
+export const metadata: Metadata = {
+  title: 'WorkPulse — Workforce Attendance',
+  description: 'Enterprise HR attendance management and workforce analytics.',
+  generator: 'v0.app',
+  icons: {
+    icon: [
+      {
+        url: '/icon-light-32x32.png',
+        media: '(prefers-color-scheme: light)',
+      },
+      {
+        url: '/icon-dark-32x32.png',
+        media: '(prefers-color-scheme: dark)',
+      },
+      {
+        url: '/icon.svg',
+        type: 'image/svg+xml',
+      },
+    ],
+    apple: '/apple-icon.png',
+  },
+}
+
+export const viewport: Viewport = {
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en">
+      <body className="antialiased">
+        {children}
+        {process.env.NODE_ENV === 'production' && <Analytics />}
+      </body>
+    </html>
+  )
+}
+
+================================================================================
+
+[FILE 3/12]  app\page.tsx
+================================================================================
+import AppShell from "@/components/workpulse/app-shell"
+export default function Page() { return <AppShell route="/" /> }
+
+================================================================================
+
+[FILE 4/12]  app\admin\explain\page.tsx
+================================================================================
+import AppShell from "@/components/workpulse/app-shell"
+export default function Page() { return <AppShell route="/admin/explain" /> }
+
+================================================================================
+
+[FILE 5/12]  app\analytics\page.tsx
+================================================================================
+import AppShell from "@/components/workpulse/app-shell"
+export default function Page() { return <AppShell route="/analytics" /> }
+
+================================================================================
+
+[FILE 6/12]  app\attendance\page.tsx
+================================================================================
+import AppShell from "@/components/workpulse/app-shell"
+export default function Page() { return <AppShell route="/attendance" /> }
+
+================================================================================
+
+[FILE 7/12]  app\employees\page.tsx
+================================================================================
+import AppShell from "@/components/workpulse/app-shell"
+export default function Page() { return <AppShell route="/employees" /> }
+
+================================================================================
+
+[FILE 8/12]  app\punch\page.tsx
+================================================================================
+import AppShell from "@/components/workpulse/app-shell"
+export default function Page() { return <AppShell route="/punch" /> }
+
+================================================================================
+
+[FILE 9/12]  components\ui\button.tsx
+================================================================================
+import { Button as ButtonPrimitive } from '@base-ui/react/button'
+import { cva, type VariantProps } from 'class-variance-authority'
+
+import { cn } from '@/lib/utils'
+
+const buttonVariants = cva(
+  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      variant: {
+        default: 'bg-primary text-primary-foreground [a]:hover:bg-primary/80',
+        outline:
+          'border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50',
+        secondary:
+          'bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground',
+        ghost:
+          'hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50',
+        destructive:
+          'bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40',
+        link: 'text-primary underline-offset-4 hover:underline',
+      },
+      size: {
+        default:
+          'h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2',
+        xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: 'h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2',
+        icon: 'size-8',
+        'icon-xs':
+          "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
+        'icon-sm':
+          'size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg',
+        'icon-lg': 'size-9',
+      },
+    },
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
+    },
+  },
+)
+
+function Button({
+  className,
+  variant = 'default',
+  size = 'default',
+  ...props
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
+
+export { Button, buttonVariants }
+
+================================================================================
+
+[FILE 10/12]  components\workpulse\app-shell.tsx
+================================================================================
+"use client"
+
+import { useEffect, useMemo, useState } from "react"
+import { BarChart3, BriefcaseBusiness, CalendarDays, ChevronLeft, Clock3, LayoutDashboard, Menu, Moon, Search, Settings2, ShieldCheck, Sun, Users, X } from "lucide-react"
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import { api } from "@/lib/api"
+
+const nav = [
+  ["Dashboard", "/", LayoutDashboard], ["Employees", "/employees", Users], ["Attendance", "/attendance", CalendarDays], ["Punch clock", "/punch", Clock3], ["Analytics", "/analytics", BarChart3], ["Admin / Explain", "/admin/explain", ShieldCheck],
+]
+const leaderboard = [{ code: "EMP-1042", name: "Maya Patel", minutes: 184 }, { code: "EMP-1018", name: "Jordan Kim", minutes: 128 }, { code: "EMP-1091", name: "Noah Williams", minutes: 96 }, { code: "EMP-1024", name: "Ava Thompson", minutes: 72 }, { code: "EMP-1077", name: "Liam Garcia", minutes: 51 }]
+const departments = [{ name: "Engineering", present: 42, rate: 96.4, late: 18 }, { name: "Operations", present: 31, rate: 92.8, late: 26 }, { name: "Customer Success", present: 24, rate: 94.1, late: 12 }, { name: "Finance", present: 16, rate: 98.2, late: 5 }]
+const employees = [{ code: "EMP-1042", name: "Maya Patel", email: "maya.patel@workpulse.io", department: "Engineering", shift: "09:00 — 17:30", joined: "2023-04-18" }, { code: "EMP-1018", name: "Jordan Kim", email: "jordan.kim@workpulse.io", department: "Operations", shift: "08:30 — 17:00", joined: "2022-11-09" }, { code: "EMP-1091", name: "Noah Williams", email: "noah.williams@workpulse.io", department: "Customer Success", shift: "09:00 — 17:30", joined: "2024-01-22" }, { code: "EMP-1024", name: "Ava Thompson", email: "ava.thompson@workpulse.io", department: "Finance", shift: "08:00 — 16:30", joined: "2021-08-30" }, { code: "EMP-1077", name: "Liam Garcia", email: "liam.garcia@workpulse.io", department: "Engineering", shift: "10:00 — 18:30", joined: "2023-09-14" }]
+const attendance = [{ code: "EMP-1042", name: "Maya Patel", date: "Nov 05, 2026", status: "PRESENT", in: "08:56 AM", out: "05:32 PM", hours: "8h 36m", late: 0, overtime: 22 }, { code: "EMP-1018", name: "Jordan Kim", date: "Nov 05, 2026", status: "LATE", in: "09:14 AM", out: "05:04 PM", hours: "7h 50m", late: 44, overtime: 0 }, { code: "EMP-1091", name: "Noah Williams", date: "Nov 05, 2026", status: "WFH", in: "09:02 AM", out: "06:11 PM", hours: "9h 09m", late: 2, overtime: 69 }, { code: "EMP-1024", name: "Ava Thompson", date: "Nov 05, 2026", status: "ON_DUTY", in: "07:58 AM", out: "—", hours: "—", late: 0, overtime: null }]
+
+function cn(...classes) { return classes.filter(Boolean).join(" ") }
+function Status({ children }) { const tone = { PRESENT: "green", LATE: "amber", WFH: "blue", ON_DUTY: "purple", ABSENT: "red" }[children] || "gray"; return <span className={`status status-${tone}`}>{children.replace("_", " ")}</span> }
+function Metric({ icon: Icon, label, value, detail, tone }) { return <div className="metric-card"><div className={`metric-icon ${tone}`}><Icon /></div><div><p className="eyebrow">{label}</p><p className="metric-value">{value}</p><p className="metric-detail">{detail}</p></div></div> }
+function PageTitle({ eyebrow, title, subtitle, action }) { return <div className="page-title"><div><p className="eyebrow page-eyebrow">{eyebrow}</p><h1>{title}</h1><p className="subtitle">{subtitle}</p></div>{action}</div> }
+function EmptyState({ title = "No records found", text = "Try adjusting your filters or check back later." }) { return <div className="empty"><div className="empty-icon"><Search /></div><strong>{title}</strong><span>{text}</span></div> }
+
+function Dashboard() {
+  const [month, setMonth] = useState("2026-11")
+  const [summary, setSummary] = useState(null)
+  useEffect(() => { api.get(`/analytics/departments/summary?month=${month}`).then(setSummary).catch(() => {}) }, [month])
+  const bars = summary?.items || leaderboard
+  return <><PageTitle eyebrow="Workspace overview" title="Dashboard" subtitle="Monitor workforce attendance, employee activity, and operational performance." action={<input className="month-input" type="month" value={month} onChange={(e) => setMonth(e.target.value)} />} /><div className="metric-grid"><Metric icon={Users} label="Total employees" value="128" detail="+6 this quarter" tone="blue" /><Metric icon={CalendarDays} label="Attendance records" value="2,846" detail="This month" tone="green" /><Metric icon={Clock3} label="Late arrivals" value="64" detail="12 fewer than October" tone="amber" /><Metric icon={BriefcaseBusiness} label="Avg. work hours" value="8h 14m" detail="Across active staff" tone="purple" /></div><div className="content-grid"><section className="panel chart-panel"><div className="panel-heading"><div><h2>Late arrival leaderboard</h2><p>Minutes late by employee this month</p></div><button className="icon-button" aria-label="More options">•••</button></div><div className="chart-wrap"><ResponsiveContainer width="100%" height={270}><BarChart data={bars} layout="vertical" margin={{ left: 8, right: 20 }}><CartesianGrid horizontal={false} stroke="var(--border)" /><XAxis type="number" tickLine={false} axisLine={false} /><YAxis dataKey="name" type="category" width={100} tickLine={false} axisLine={false} fontSize={12} /><Tooltip cursor={{ fill: "var(--muted)" }} /><Bar dataKey="minutes" fill="#2563eb" radius={[0, 5, 5, 0]} /></BarChart></ResponsiveContainer></div></section><section className="panel"><div className="panel-heading"><div><h2>Department summary</h2><p>Attendance health by team</p></div><button className="text-button">View report <ChevronLeft className="rotate-180" /></button></div><div className="table-scroll"><table><thead><tr><th>Department</th><th>Present</th><th>Rate</th><th>Late</th></tr></thead><tbody>{departments.map((d) => <tr key={d.name}><td className="strong">{d.name}</td><td>{d.present}</td><td><span className="rate">{d.rate}%</span></td><td className="muted">{d.late} min</td></tr>)}</tbody></table></div></section></div><section className="panel"><div className="panel-heading"><div><h2>Today at a glance</h2><p>Live attendance activity across your organization</p></div><button className="text-button">See all attendance <ChevronLeft className="rotate-180" /></button></div><div className="pulse-row"><div><span className="pulse-dot green-dot" /> <strong>112</strong> Present</div><div><span className="pulse-dot amber-dot" /> <strong>8</strong> Late</div><div><span className="pulse-dot blue-dot" /> <strong>6</strong> Working remotely</div><div><span className="pulse-dot red-dot" /> <strong>2</strong> Absent</div></div></section></>
+}
+
+function Employees() { const [open, setOpen] = useState(false); return <><PageTitle eyebrow="People operations" title="Employee directory" subtitle="Manage employee information, departments, and assigned work shifts." action={<button className="primary-button" onClick={() => setOpen(true)}>+ Add employee</button>} /><div className="toolbar"><div className="search-box"><Search /><input placeholder="Search employees" /></div><select><option>All departments</option><option>Engineering</option><option>Operations</option></select><button className="secondary-button">Refresh</button></div><section className="panel table-panel"><div className="table-meta"><span><strong>128</strong> employees</span><span className="muted">Showing 1–5 of 128</span></div><div className="table-scroll"><table><thead><tr><th>Employee</th><th>Email</th><th>Department</th><th>Shift</th><th>Joined date</th></tr></thead><tbody>{employees.map((e) => <tr key={e.code}><td><div className="person"><div className="avatar">{e.name.split(" ").map((n) => n[0]).join("")}</div><div><strong>{e.name}</strong><small>{e.code}</small></div></div></td><td className="muted">{e.email}</td><td><span className="department-tag">{e.department}</span></td><td>{e.shift}</td><td className="muted">{e.joined}</td></tr>)}</tbody></table></div><div className="pagination"><span>Rows per page <select><option>20</option><option>50</option></select></span><span>1 / 26 <button className="page-button">‹</button><button className="page-button">›</button></span></div></section>{open && <div className="modal-backdrop" onClick={() => setOpen(false)}><div className="modal" onClick={(e) => e.stopPropagation()}><div className="modal-heading"><div><h2>Add employee</h2><p>Create a new employee record.</p></div><button className="icon-button" onClick={() => setOpen(false)}><X /></button></div><div className="form-grid"><label>Employee code<input placeholder="EMP-1108" /></label><label>Full name<input placeholder="Alex Morgan" /></label><label>Email address<input type="email" placeholder="alex@company.com" /></label><label>Department<select><option>Engineering</option><option>Operations</option></select></label><label>Shift start<input type="time" defaultValue="09:00" /></label><label>Shift end<input type="time" defaultValue="17:30" /></label><label>Joined date<input type="date" /></label></div><div className="modal-actions"><button className="secondary-button" onClick={() => setOpen(false)}>Cancel</button><button className="primary-button" onClick={() => setOpen(false)}>Create employee</button></div></div></div>}</> }
+
+function Attendance() { const [selected, setSelected] = useState(null); return <><PageTitle eyebrow="Daily operations" title="Attendance management" subtitle="Monitor daily attendance, identify irregularities, and review attendance corrections." action={<button className="secondary-button">Export report</button>} /><div className="filter-bar"><div><label>Employee code</label><input placeholder="Search code" /></div><div><label>Date from</label><input type="date" defaultValue="2026-11-01" /></div><div><label>Date to</label><input type="date" defaultValue="2026-11-05" /></div><div><label>Status</label><select><option>All statuses</option><option>PRESENT</option><option>WFH</option><option>ABSENT</option></select></div><button className="primary-button">Apply filters</button></div><section className="panel table-panel"><div className="table-meta"><span><strong>2,846</strong> records</span><span className="muted">Updated just now</span></div><div className="table-scroll"><table><thead><tr><th>Employee</th><th>Date</th><th>Status</th><th>Punch in</th><th>Punch out</th><th>Work hours</th><th>Late</th><th>Overtime</th><th></th></tr></thead><tbody>{attendance.map((a) => <tr key={a.code} onClick={() => setSelected(a)}><td><div><strong>{a.name}</strong><small>{a.code}</small></div></td><td>{a.date}</td><td><Status>{a.status}</Status></td><td>{a.in}</td><td>{a.out}</td><td>{a.hours}</td><td className={a.late ? "warning-text" : "muted"}>{a.late ? `${a.late} min` : "—"}</td><td>{a.overtime ? `${a.overtime} min` : "—"}</td><td><button className="row-action">Regularize</button></td></tr>)}</tbody></table></div></section>{selected && <div className="drawer-backdrop" onClick={() => setSelected(null)}><aside className="drawer" onClick={(e) => e.stopPropagation()}><div className="modal-heading"><div><p className="eyebrow">Attendance record</p><h2>{selected.name}</h2><p className="subtitle">{selected.code} · {selected.date}</p></div><button className="icon-button" onClick={() => setSelected(null)}><X /></button></div><div className="detail-status"><Status>{selected.status}</Status><span>Last updated 5 minutes ago</span></div><div className="detail-grid">{[["Punch in", selected.in],["Punch out", selected.out],["Work hours", selected.hours],["Late minutes", `${selected.late || 0} min`],["Overtime", selected.overtime ? `${selected.overtime} min` : "—"]].map(([label, value]) => <div key={label}><span>{label}</span><strong>{value}</strong></div>)}</div><div className="timeline"><h3>Correction history</h3><EmptyState title="No correction history" text="This record has not been regularized." /></div><button className="primary-button full-button">Regularize attendance</button></aside></div>}</> }
+
+function Punch() { const [code, setCode] = useState(""); const [result, setResult] = useState(null); const [now, setNow] = useState(new Date()); useEffect(() => { const id = setInterval(() => setNow(new Date()), 1000); return () => clearInterval(id) }, []); const punch = (type) => { setResult({ type, code: code || "EMP-1042", time: now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }) }; return <div className="punch-page"><PageTitle eyebrow="Front desk terminal" title="Employee punch clock" subtitle="Record employee clock-in and clock-out events." /><div className="punch-grid"><section className="punch-card"><div className="clock-orb"><Clock3 /></div><p className="eyebrow">Current local time</p><div className="big-clock">{now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</div><p className="clock-date">{now.toLocaleDateString([], { weekday: "long", month: "long", day: "numeric" })}</p><label className="code-field">Employee code<input value={code} onChange={(e) => setCode(e.target.value)} placeholder="Enter employee code" /></label><div className="punch-actions"><button className="punch-in" onClick={() => punch("in")}><span>↓</span> Punch in</button><button className="punch-out" onClick={() => punch("out")}><span>↑</span> Punch out</button></div></section><section className="punch-side"><div className="panel"><p className="eyebrow">Latest activity</p>{result ? <div className="result-card"><div className="success-mark">✓</div><div><strong>Punch {result.type} recorded</strong><p>{result.code} · {result.time}</p></div></div> : <EmptyState title="Ready for a punch" text="Enter an employee code to record attendance." />}</div><div className="panel guidance"><h3>Quick reminders</h3><div><span>01</span><p>Use the employee code shown on their ID badge.</p></div><div><span>02</span><p>Punch out is available once a punch in is recorded.</p></div></div></section></div></div> }
+
+function Analytics() { return <><PageTitle eyebrow="Insights" title="Workforce analytics" subtitle="Explore attendance patterns, department performance, and employee punctuality." action={<input className="month-input" type="month" defaultValue="2026-11" />} /><div className="analytics-top"><div className="panel employee-summary"><div className="panel-heading"><div><h2>Employee monthly summary</h2><p>Search an employee to inspect their month</p></div><div className="search-box compact"><Search /><input placeholder="EMP-1042" /></div></div><div className="summary-content"><div className="score-ring"><strong>94.8%</strong><span>attendance</span></div><div className="summary-stats">{[["Working days","22"],["Present days","20"],["Leave days","1"],["Late count","3"],["Late minutes","42"],["Overtime","184 min"]].map(([l,v])=><div key={l}><span>{l}</span><strong>{v}</strong></div>)}</div></div></div><div className="panel"><div className="panel-heading"><div><h2>Department health</h2><p>Attendance rate by team</p></div></div>{departments.map(d => <div className="health-row" key={d.name}><span>{d.name}</span><div className="health-track"><i style={{width: `${d.rate}%`}} /></div><strong>{d.rate}%</strong></div>)}</div></div><section className="panel"><div className="panel-heading"><div><h2>Late arrival leaderboard</h2><p>Employees with the most late minutes this month</p></div><button className="secondary-button">Download CSV</button></div><div className="table-scroll"><table><thead><tr><th>Rank</th><th>Employee</th><th>Department</th><th>Late minutes</th><th>Late count</th></tr></thead><tbody>{leaderboard.map((e, i) => <tr key={e.code}><td><span className={`rank rank-${i + 1}`}>{i + 1}</span></td><td><strong>{e.name}</strong><small>{e.code}</small></td><td className="muted">{departments[i % departments.length].name}</td><td className="warning-text">{e.minutes} min</td><td>{Math.max(2, 8 - i)}</td></tr>)}</tbody></table></div></section></> }
+function Explain() { const [run, setRun] = useState(false); return <><PageTitle eyebrow="Developer tools" title="Query execution inspector" subtitle="Inspect backend query execution plans and understand database performance." /><div className="explain-grid"><section className="panel"><div className="panel-heading"><div><h2>Explain an endpoint</h2><p>Choose a query to inspect its database plan.</p></div></div><label>Endpoint<select><option>attendance_list</option><option>employee_monthly</option><option>department_summary</option><option>late_leaderboard</option><option>department_trend</option></select></label><label>Employee code<input placeholder="Optional" /></label><label>Month<input type="month" defaultValue="2026-11" /></label><button className="primary-button full-button" onClick={() => setRun(true)}>Run explain query</button></section><section className="panel code-panel"><div className="panel-heading"><div><h2>Execution plan</h2><p>{run ? "attendance_list · 2026-11" : "No query has been run"}</p></div>{run && <span className="status status-green">Using index</span>}</div>{run ? <pre>{JSON.stringify({ endpoint: "attendance_list", executionStats: { stage: "IXSCAN", nReturned: 2846, executionTimeMillis: 18 }, indexName: "attendance_emp_date_idx" }, null, 2)}</pre> : <EmptyState title="Ready to inspect" text="Run an endpoint query to view the raw JSON response." />}</section></div></> }
+
+export default function AppShell({ route = "/" }) { const [dark, setDark] = useState(false); const [mobile, setMobile] = useState(false); useEffect(() => { document.documentElement.classList.toggle("dark", dark) }, [dark]); const active = nav.find((item) => item[1] === route) || nav[0]; const Page = route === "/employees" ? Employees : route === "/attendance" ? Attendance : route === "/punch" ? Punch : route === "/analytics" ? Analytics : route === "/admin/explain" ? Explain : Dashboard; return <div className="app-shell"><aside className={cn("sidebar", mobile && "mobile-open")}><div className="brand"><div className="brand-mark">W</div><span>WorkPulse</span><button className="collapse-button"><ChevronLeft /></button></div><div className="workspace-switcher"><div className="workspace-icon">A</div><div><strong>Acme Corporation</strong><small>People team</small></div><ChevronLeft className="rotate-90" /></div><nav><p className="nav-label">Workspace</p>{nav.slice(0, 5).map(([label, href, Icon]) => <a className={active[1] === href ? "active" : ""} href={href} key={href} onClick={() => setMobile(false)}><Icon /><span>{label}</span>{label === "Attendance" && <b>2</b>}</a>)}<p className="nav-label admin-label">Administration</p><a className={active[1] === "/admin/explain" ? "active" : ""} href="/admin/explain"><ShieldCheck /><span>Admin / Explain</span></a></nav><div className="sidebar-bottom"><a href="#"><Settings2 /><span>Settings</span></a><div className="user-card"><div className="avatar">SC</div><div><strong>Sarah Chen</strong><small>Administrator</small></div><button onClick={() => setDark(!dark)} aria-label="Toggle theme">{dark ? <Sun /> : <Moon />}</button></div></div></aside>{mobile && <div className="mobile-scrim" onClick={() => setMobile(false)} />}<main className="main"><header className="topbar"><button className="mobile-menu" onClick={() => setMobile(true)}><Menu /></button><div className="breadcrumbs"><span>Workspace</span><b>/</b><strong>{active[0]}</strong></div><div className="topbar-actions"><span className="today">Thursday, November 5, 2026</span><button className="theme-button" onClick={() => setDark(!dark)}>{dark ? <Sun /> : <Moon />}</button><div className="top-avatar">SC</div></div></header><div className="content">{Page && <Page />}</div></main></div> }
+
+================================================================================
+
+[FILE 11/12]  lib\api.js
+================================================================================
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000"
+
+export class ApiError extends Error {
+  constructor(message, status) {
+    super(message)
+    this.status = status
+  }
+}
+
+export function normalizeError(payload, status) {
+  if (status === 409) return "This action conflicts with an existing record."
+  if (status === 404) return "The requested resource could not be found."
+  if (status === 422) {
+    if (Array.isArray(payload?.detail)) return payload.detail.map((item) => item.msg).join("; ")
+    return payload?.detail || "Please check the submitted fields."
+  }
+  if (typeof payload?.detail === "string") return payload.detail
+  return "The backend could not complete the request."
+}
+
+async function request(path, options = {}) {
+  try {
+    const response = await fetch(`${API_BASE}${path}`, { headers: { "Content-Type": "application/json", ...(options.headers || {}) }, ...options })
+    const text = await response.text()
+    let payload = null
+    try { payload = text ? JSON.parse(text) : null } catch { payload = { detail: text } }
+    if (!response.ok) throw new ApiError(normalizeError(payload, response.status), response.status)
+    return payload
+  } catch (error) {
+    if (error instanceof ApiError) throw error
+    throw new ApiError("The attendance backend could not be reached. Check that the API is running.", 0)
+  }
+}
+
+export const api = {
+  get: (path) => request(path),
+  post: (path, body) => request(path, { method: "POST", body: JSON.stringify(body) }),
+  patch: (path, body) => request(path, { method: "PATCH", body: JSON.stringify(body) }),
+}
+
+================================================================================
+
+[FILE 12/12]  lib\utils.ts
+================================================================================
+import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+================================================================================
+
